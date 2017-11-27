@@ -1,3 +1,5 @@
 venv/
 *.docx
+*.odt
 test.py
+odf_test.py
