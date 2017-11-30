@@ -9,6 +9,7 @@ class UrlDocument(object):
         self.title = ''
         self.description = ''
         self.content = []
+        self.top_ten_words = None
         self.words = {}
 
     def get_title(self, metas):
@@ -34,7 +35,7 @@ class UrlDocument(object):
             in this sub-section. Insignificant stop words have been pre-removed.
         '''
         sorted_words = sorted(self.words.items(), key=lambda x: x[1], reverse=True)
-        return sorted_words[:10]
+        self.top_ten_words = sorted_words[:10]
 
     def store_words(self, content):
         '''Store words for keyword analyis, removing any insignificant stop words'''

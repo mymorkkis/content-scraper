@@ -29,4 +29,6 @@ def create_url_document(url):
             if tag.name in wanted_tags:
                 document.get_content(tag.name, tag.text)
 
+    document.get_top_ten_words()
+
     return document
