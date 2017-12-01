@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Content Scraper</title>
+</head>
+<body>
+	{% block content %}
+
+		<form action="{{ url_for('home') }}" method="POST">
+			{{ form.csrf_token }}
+
+			<div>
+				{{ form.url.label }}<br>
+				{{ form.url }}<br>
+
+				{% for error in form.url.errors %}
+					<p>{{ error }}</p>
+				{% endfor %}
+				
+				{{ form.file_name.label }}<br>
+				{{ form.file_name }}<br>
+
+				{% for error in form.file_name.errors %}
+					<p>{{ error }}</p>
+				{% endfor %}
+			
+				{{ form.file_extension.label }}<br>
+				{{ form.file_extension }}<br>
+			
+				{{ form.stop_words.label }}<br>
+				{{ form.stop_words }}<br>
+
+				<input type="submit" value="Submit">
+			</div>
+		</form>
+
+	{% endblock %}
+</body>
+</html>
