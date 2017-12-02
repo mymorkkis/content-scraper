@@ -4,5 +4,6 @@ images/
 *.py[cod]
 *.docx
 *.odt
+config.py
 test.py
 odf_test.py
