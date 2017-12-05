@@ -1,4 +1,4 @@
-from stopwords import stop_words
+from document.stopwords import stop_words
 
 
 class UrlDocument(object):

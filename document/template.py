@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
-from url_document import UrlDocument
+from models.url_document import UrlDocument
 
 
-def create_url_document(url):
+def create_template(url):
     # Parse website URL provided
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html5lib')

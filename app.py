@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect
-from site_scraper.forms import UrlRequest
+from models.forms import UrlRequest
+from data.processing import process_data
 
 
 app = Flask(__name__)
@@ -9,9 +10,8 @@ app.config.from_pyfile('config.py')
 @app.route('/', methods=['GET', 'POST'])
 def home():
     form = UrlRequest()
-
     if form.validate_on_submit():
-        # return f'{form.url.data} - {form.file_name.data} - {form.file_extension.data}'
+        process_data(form)
         return redirect('processing')
     return render_template('form.html', form=form)
 
@@ -24,7 +24,7 @@ def processing():
 # TODO add some styling
 @app.errorhandler(404)
 def page_not_found(error):
-    return 'This page can not be found. Is the url correct?', 404
+    return "This page can't be found. Is the url correct?", 404
 
 
 if __name__ == '__main__':

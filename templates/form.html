@@ -1,5 +1,5 @@
 {% extends "template.html" %}
-{% from "_render_field.html" import render_field %}
+{% from "_render_field.html" import render_field, render_radio_field %}
 {% block content %}
 
 <div class="container theme-showcase" role="main">
@@ -10,13 +10,17 @@
             {{ form.csrf_token }}
             <fieldset>
               <legend>Content Scraper</legend>
+
               {{ render_field(form.url) }}
           
               {{ render_field(form.file_name) }}
         
               {{ render_field(form.file_extension) }}
         
+              {{ render_radio_field(form.scraping_type) }}
+
               {{ render_field(form.stop_words) }}
+              
               <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
                   <button type="submit" class="btn btn-primary">Submit</button>

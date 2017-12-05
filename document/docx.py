@@ -1,19 +1,31 @@
 from docx import Document
 from docx.shared import Inches
-from create_document import create_url_document
+from document.template import create_template
+from document.doc_path import set_path
 
 
-def create_word_document(filename, urls):
+def create_document(filename, extension, url):
+    word_doc = Document()
+    # TODO add comment
+    doc = create_template(url)
+    create_section(word_doc, doc)
+
+    path = set_path(filename, extension)
+    word_doc.save(path)
+
+
+def create_multipart_document(filename, extension, urls):
     word_doc = Document()
     # TODO add comment
     for url in urls:
-        doc_section = create_url_document(url)
-        create_word_section(word_doc, doc_section)
+        doc_section = create_template(url)
+        create_section(word_doc, doc_section)
 
-    word_doc.save(filename)
+    path = set_path(filename, extension)
+    word_doc.save(path)
 
 
-def create_word_section(word_doc, doc_section):
+def create_section(word_doc, doc_section):
     ds = doc_section
     word_doc.add_heading(ds.heading, 0)
 
@@ -65,7 +77,7 @@ def add_page_content(document, page_content):
             document.add_paragraph(content)
 
 
-# Annoying hack to get table width to stick. See below:
+# Need to edit column width and every cell inside for width to stick. See below:
 # https://stackoverflow.com/questions/43051462/python-docx-how-to-set-cell-width-in-tables
 def set_column_widths(table):
     widths = (Inches(0.8), Inches(1.6), Inches(1))
