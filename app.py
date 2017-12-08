@@ -1,6 +1,7 @@
-from flask import Flask, render_template, redirect
-from models.forms import UrlRequest
+from flask import Flask, render_template
+from data.forms import UrlRequest
 from data.processing import process_data
+from document.doc_path import set_path
 
 
 app = Flask(__name__)
@@ -12,19 +13,16 @@ def home():
     form = UrlRequest()
     if form.validate_on_submit():
         process_data(form)
-        return redirect('processing')
+        filename = form.filename.data + form.file_extension.data
+        file_path = set_path(filename)
+        return render_template('processing.html', file_path=file_path)
     return render_template('form.html', form=form)
 
 
-@app.route('/processing')
-def processing():
-    return render_template('processing.html')
-
-
 # TODO add some styling
-@app.errorhandler(404)
-def page_not_found(error):
-    return "This page can't be found. Is the url correct?", 404
+# @app.errorhandler(404)
+# def page_not_found(error):
+#     return "This page can't be found. Is the url correct?", 404
 
 
 if __name__ == '__main__':

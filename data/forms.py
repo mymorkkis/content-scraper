@@ -4,11 +4,12 @@ from wtforms.validators import InputRequired, URL
 
 
 class UrlRequest(FlaskForm):
-    """docstring for url_request"""
+    """TODO"""
 
     url = TextField("Url to scrape:", validators=[InputRequired(),
             URL(message="Not valid. Please enter the entire url.")])
-    file_name = TextField("Filename:", validators=[InputRequired()])
+    filename = TextField("Filename:", validators=[InputRequired()])
+    # TODO add functionality to save as different file types
     file_extension = SelectField("File type:", choices=[('.docx', '.docx')])
     scraping_type = RadioField('Scraping option:', default='url', choices=[
             ('url', 'Just this URL'), ('internal_links', 'This URL and all internal links')])

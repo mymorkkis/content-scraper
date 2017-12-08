@@ -4,24 +4,18 @@ from document.template import create_template
 from document.doc_path import set_path
 
 
-def create_document(filename, extension, url):
+def create_document(filename, urls):
     word_doc = Document()
-    # TODO add comment
-    doc = create_template(url)
-    create_section(word_doc, doc)
 
-    path = set_path(filename, extension)
-    word_doc.save(path)
+    # if not isinstance(urls, list):
+    #     raise TypeError("urls must be a list")
 
-
-def create_multipart_document(filename, extension, urls):
-    word_doc = Document()
-    # TODO add comment
+    # Create doc_section for every URL passed in
     for url in urls:
         doc_section = create_template(url)
         create_section(word_doc, doc_section)
 
-    path = set_path(filename, extension)
+    path = set_path(filename)
     word_doc.save(path)
 
 

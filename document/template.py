@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from models.url_document import UrlDocument
+from document.url_document import UrlDocument
 
 
 def create_template(url):
@@ -29,6 +29,7 @@ def create_template(url):
             if tag.name in wanted_tags:
                 document.get_content(tag.name, tag.text)
 
+    # Find ten most common keywords
     document.get_top_ten_words()
 
     return document
