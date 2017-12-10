@@ -1,6 +1,7 @@
 from flask import Flask, render_template
-from forms import UrlRequest, process_data
+from forms import UrlRequest
 from document.doc_path import set_path
+from document.processing import process_form_data
 
 
 app = Flask(__name__)
@@ -11,17 +12,11 @@ app.config.from_pyfile('config.py')
 def home():
     form = UrlRequest()
     if form.validate_on_submit():
-        process_data(form)
+        process_form_data(form)
         filename = form.filename.data + form.file_extension.data
         file_path = set_path(filename)
         return render_template('processing.html', file_path=file_path)
     return render_template('form.html', form=form)
-
-
-# TODO add some styling
-# @app.errorhandler(404)
-# def page_not_found(error):
-#     return "This page can't be found. Is the url correct?", 404
 
 
 if __name__ == '__main__':

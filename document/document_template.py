@@ -1,15 +1,13 @@
-from document.stopwords import stop_words
-
-
 class DocumentTemplate(object):
     """Document Template Class"""
 
-    def __init__(self, url):
+    def __init__(self, url, stop_words):
         self.heading = url.upper()
         self.title = ''
         self.description = ''
         self.content = []
         self.top_ten_words = None
+        self.stop_words = stop_words
         self.words = {}
 
     def get_title(self, metas):
@@ -54,6 +52,6 @@ class DocumentTemplate(object):
         '''Removes pre-determined stop words from a given list and returns list'''
         wanted_words = []
         for index, word in enumerate(words):
-            if word not in stop_words:
+            if word not in self.stop_words:
                 wanted_words.append(words[index])
         return(wanted_words)

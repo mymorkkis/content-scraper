@@ -3,11 +3,11 @@ from bs4 import BeautifulSoup
 from document.document_template import DocumentTemplate
 
 
-def create_template(url):
+def create_template(url, stop_words):
     # Parse website URL provided
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html5lib')
-    template = DocumentTemplate(url)
+    template = DocumentTemplate(url, stop_words)
 
     # Find meta name and meta description
     metas = soup.find_all('meta')

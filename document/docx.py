@@ -4,9 +4,9 @@ from document.create_template import create_template
 from document.doc_path import set_path
 
 
-def create_document(filename, url):
+def create_document(filename, url, stop_words):
     doc = Document()
-    template = create_template(url)
+    template = create_template(url, stop_words)
 
     doc.add_heading(template.heading, 0)
 
