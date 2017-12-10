@@ -1,6 +1,5 @@
 from flask import Flask, render_template
-from data.forms import UrlRequest
-from data.processing import process_data
+from forms import UrlRequest, process_data
 from document.doc_path import set_path
 
 
