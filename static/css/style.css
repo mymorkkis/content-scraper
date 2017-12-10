@@ -3,3 +3,8 @@ body {
   padding-bottom: 30px;
 }
 
+.error-p {
+	padding-top: 8px;
+	color: red;
+}
+

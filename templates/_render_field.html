@@ -2,9 +2,9 @@
 <div class="form-group">
   <label for="{{ field.name }}" class="col-lg-2 control-label">{{ field.label.text }}</label>
   <div class="col-lg-10">
-    {{ field(class_='form-control') }}
+    {{ field(class='form-control', placeholder=field.description) }}
     {% for error in field.errors %}
-        <p>{{ error }}</p>
+        <p class='error-p'>{{ error }}</p>
     {% endfor %}
   </div>
 </div>
