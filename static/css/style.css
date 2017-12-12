@@ -5,6 +5,10 @@ body {
 
 .error-p {
 	padding-top: 8px;
-	color: red;
+	color: #B0061E;
+}
+
+.text-info {
+	color: #ACCEDE;
 }
 

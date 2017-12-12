@@ -12,7 +12,7 @@ class UrlRequest(FlaskForm):
             InputRequired(),
             URL(message="Not valid. Please enter the entire url.")
         ],
-        description='https://example.com')
+        description='Enter full URL: https://example.com')
     filename = TextField(
         "Filename:",
         validators=[
@@ -26,4 +26,4 @@ class UrlRequest(FlaskForm):
     file_extension = SelectField("File type:", choices=[('.docx', '.docx')])
     stop_words = TextField(
         'Words to remove from keyword analysis:',
-        description='Enter words separated by space or comma or leave blank')
+        description='Enter words separated by space or comma. Leave blank if no extra words required.')

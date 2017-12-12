@@ -11,7 +11,7 @@ stop_words.extend(['', '&'])
 def process_form_data(form):
     url = form.url.data
     filename = form.filename.data + form.file_extension.data
-    added_words = re.findall('\w+', form.stop_words.data)
+    added_words = re.findall("[a-z|A-Z|.|']+", form.stop_words.data)
     stop_words.extend(added_words)
 
     # TODO add functionality to create differnt document types (.odt, .pages etc)
