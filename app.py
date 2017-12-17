@@ -5,7 +5,6 @@ from document.processing import process_form_data
 
 
 app = Flask(__name__)
-app.config.from_pyfile('config.py')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -20,4 +19,5 @@ def home():
 
 
 if __name__ == '__main__':
+    app.config.from_pyfile('config.py')
     app.run()
