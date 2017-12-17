@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from forms import UrlRequest
 from document.doc_path import set_path
@@ -5,6 +6,7 @@ from document.processing import process_form_data
 
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY')
 
 
 @app.route('/', methods=['GET', 'POST'])
