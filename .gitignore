@@ -8,4 +8,4 @@ config.py
 test.py
 odf_test.py
 bs4_test.py
-
+temp_files/*

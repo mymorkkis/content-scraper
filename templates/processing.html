@@ -5,8 +5,9 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="well bs-component">
-        <p class="lead">Your file is being saved at: {{ file_path }}</p>
-				<a class="btn btn-primary" href="/" role="button">Scrape Another URL</a>
+        <p class="lead">{{ filename }} has been created...</p>
+				<a class="btn btn-primary" href="/download/{{ filename }}" role="button" download>Download File</a>
+        <a class="btn btn-primary" href="/" role="button">Scrape Another URL</a>
       </div>
    </div>
   </div>
