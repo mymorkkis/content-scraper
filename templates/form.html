@@ -9,7 +9,7 @@
         <form class="form-horizontal", method="POST" action="/">
           {{ form.csrf_token }}
           <fieldset>
-            <legend class="text-info">Digital Marketing Website Content Scraper and Keyword Analysis</legend>
+            <legend class="legend-info">Digital Marketing Website Content Scraper and Keyword Analysis</legend>
 
             {{ render_field(form.url) }}
         
@@ -19,6 +19,7 @@
       
             {{ render_field(form.stop_words) }}
             
+            <br>
             <div class="form-group">
               <div class="col-lg-10 col-lg-offset-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
