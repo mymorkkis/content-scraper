@@ -1,7 +1,6 @@
 from docx import Document
 from docx.shared import Inches
 from document.create_template import create_template
-# from document.doc_path import set_path
 
 
 def create_document(filename, url, stop_words):

@@ -1,3 +1,6 @@
+import re
+
+
 class DocumentTemplate(object):
     """Document Template Class"""
 
@@ -40,9 +43,9 @@ class DocumentTemplate(object):
 
     def _store_words(self, content):
         '''Store words for keyword analyis, removing any insignificant stop words'''
-        content = [word.lower() for word in content.split(' ')]
-        content = self._remove_stopwords(content)
-        for word in content:
+        word_list = re.findall("[\w|.|']+[\w]", content.lower())
+        word_list = self._remove_stopwords(word_list)
+        for word in word_list:
             if word in self.words:
                 self.words[word] += 1
             else:
