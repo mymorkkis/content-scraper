@@ -1,9 +1,14 @@
+"""Convert web pages into docx documents for key-word analysis."""
 from docx import Document
 from docx.shared import Inches
 from document.create_template import create_template
 
 
 def create_document(filename, url, stop_words):
+    """Create document template from provided arguments and convert to docx document. 
+
+       Save to path: /tmp/FILENAME
+    """
     doc = Document()
     template = create_template(url, stop_words)
 
@@ -16,18 +21,19 @@ def create_document(filename, url, stop_words):
     doc.add_paragraph(template.description)
 
     doc.add_paragraph().add_run('Top Ten Keywords:').bold = True
-    add_top_ten_words_table(doc, template.top_ten_words)
+    _add_top_ten_words_table(doc, template.top_ten_words)
     # Add blank paragraph under table
     doc.add_paragraph()
 
     doc.add_paragraph().add_run('Content:').bold = True
-    add_page_content(doc, template.content)
+    _add_page_content(doc, template.content)
 
     path = f'/tmp/{filename}'
     doc.save(path)
 
 
-def add_page_content(doc, page_content):
+def _add_page_content(doc, page_content):
+    """Helper function for create_document."""
     for item in page_content:
         # Unpack tuple
         tag, content = item
@@ -43,9 +49,10 @@ def add_page_content(doc, page_content):
             doc.add_paragraph(content)
 
 
-def add_top_ten_words_table(doc, top_ten_words):
+def _add_top_ten_words_table(doc, top_ten_words):
+    """Helper function for create_document."""
     table = doc.add_table(rows=1, cols=3, style='Table Grid')
-    set_column_widths(table)
+    _set_column_widths(table)
     hdr_cells = table.rows[0].cells
     hdr_cells[1].text = 'Keyword'
     hdr_cells[2].text = 'Frequency'
@@ -60,7 +67,8 @@ def add_top_ten_words_table(doc, top_ten_words):
 
 # Need to edit column width and every cell inside for width to stick. See below:
 # https://stackoverflow.com/questions/43051462/python-docx-how-to-set-cell-width-in-tables
-def set_column_widths(table):
+def _set_column_widths(table):
+    """Helper function for _add_top_ten_words_table."""
     widths = (Inches(0.8), Inches(1.6), Inches(1))
 
     for column, width in zip(table.columns, widths):
