@@ -27,5 +27,4 @@ class UrlRequest(FlaskForm):
     file_extension = SelectField("File type:", choices=[('.docx', '.docx')])
     stop_words = TextField(
         'Words to remove from keyword analysis:',
-        description='Enter words separated by space or comma. \
-                     Leave blank if no extra words required.')
+        description='Enter words separated by space or comma. Leave blank if no extra words required.')
