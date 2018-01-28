@@ -62,8 +62,7 @@ def _extract_content(soup):
     for div in p_divs:
         for tag in div.descendants:
             if tag.name in wanted_tags:
-                striped_text = tag.text.strip()
-                content.append((tag.name, striped_text))
+                content.append((tag.name, tag.text.strip()))
     return content
 
 
@@ -72,7 +71,7 @@ def _store_words(all_content, stop_words):
     words = {}
     content_text = [content[1] for content in all_content]
     text = ' '.join(content_text).lower()
-    # Words can include numbers, . or ' but must end with a letter or number
+    # Words must be alphanumeric and can include . or ' but not the last letter
     word_list = re.findall(r"[\w|.|']+[\w]", text)
     wanted_words = [word for word in word_list if word not in stop_words]
     for word in wanted_words:
