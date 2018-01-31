@@ -16,12 +16,13 @@ def process_form_data(form):
 
 def _stop_words(form_stop_words):
     """Helper function for process_form_data. 
+
        Return list of stop_words to be removed from keyword analysis.
     """
     # Pre-existing list of stop words. Full list found at:
     # https://github.com/Alir3z4/stop-words/blob/0e438af98a88812ccc245cf31f93644709e70370/english.txt
     stop_words = get_stop_words('english')
-    # Words must be alphanumeric and can include . or ' but not the last letter
+    # Words must be alphanumeric and can include . or ' but not as the last letter
     added_words = re.findall(r"[\w|.|']+[\w]", form_stop_words)
     stop_words.extend(added_words)
     return stop_words

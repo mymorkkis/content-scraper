@@ -19,17 +19,11 @@ def create_template(url, stop_words):
     title = _extract_meta('title', metas)
     description = _extract_meta('description', metas)
     content = _extract_content(soup)
-    words = _store_words(content, stop_words)
-    top_ten_words = _calculate_top_ten_words(words)
+    top_ten_words = _calculate_top_ten_words(content, stop_words)
 
-    template = DocumentTemplate(
-        heading,
-        title,
-        description,
-        content,
-        top_ten_words
+    return DocumentTemplate(
+        heading, title, description, content, top_ten_words
     )
-    return template
 
 
 def parse_url(url):
@@ -66,29 +60,16 @@ def _extract_content(soup):
     return content
 
 
-def _store_words(all_content, stop_words):
-    """Helper function for create_template. Return dictionary of word counts."""
-    words = {}
-    content_text = [content[1] for content in all_content]
-    text = ' '.join(content_text).lower()
-    # Words must be alphanumeric and can include . or ' but not the last letter
-    word_list = re.findall(r"[\w|.|']+[\w]", text)
-    wanted_words = [word for word in word_list if word not in stop_words]
-    for word in wanted_words:
-        if word in words:
-            words[word] += 1
-        else:
-            words[word] = 1
-    return words
-
-
-def _calculate_top_ten_words(words):
+def _calculate_top_ten_words(all_content, stop_words):
     """Helper function for create_template.
 
-       Return a list of tuples (word, count) for the ten most common words in the URL. 
-       Insignificant stop words have been pre-removed.
+       Remove insignifcant stop words and return a list of tuples (word, count) 
+       for top 10 most common words in page content.
     """
-    # Sort dictionary of words: word_count by word_count descending
-    sorted_words = sorted(words.items(), key=lambda x: x[1], reverse=True)
-    return sorted_words[:10]
-
+    content_text = [content[1] for content in all_content]
+    text = ' '.join(content_text).lower()
+    # Words must be alphanumeric and can include . or ' but not as the last letter
+    word_list = re.findall(r"[\w|.|']+[\w]", text)
+    wanted_words = [word for word in word_list if word not in stop_words]
+    counted_words = collections.Counter(wanted_words)
+    return counted_words.most_common(10)
