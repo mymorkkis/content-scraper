@@ -45,9 +45,8 @@ def _extract_meta(meta_type, metas):
 
 def _extract_content(soup):
     """Helper function for create_template. Return a list of tuples (tag.name, tag.text)."""
-    content = []
-    p_divs = []
-    wanted_tags = ['h1', 'h2', 'h3', 'h4', 'p', 'li']
+    content, p_divs = [], []
+    wanted_tags = 'h1 h2 h3 h4 p li'.split()
     # Find all divs that contain paragraph text
     p_tags = soup.find_all('p')
     for p_tag in p_tags:
@@ -71,6 +70,6 @@ def _calculate_top_ten_words(all_content, stop_words):
     text = ' '.join(content_text).lower()
     # Words must be alphanumeric and can include . or ' but not as the last letter
     word_list = re.findall(r"[\w|.|']+[\w]", text)
-    wanted_words = [word for word in word_list if word not in stop_words]
+    wanted_words = (word for word in word_list if word not in stop_words)
     counted_words = collections.Counter(wanted_words)
     return counted_words.most_common(10)

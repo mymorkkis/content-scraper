@@ -8,7 +8,7 @@ from stop_words import get_stop_words
 def process_form_data(form):
     """Unpack url, filename & stopwords from web form. Pass to docx.create_document()."""
     url = form.url.data
-    filename = form.filename.data + form.file_extension.data
+    filename = f'{form.filename.data}{form.file_extension.data}'
     stop_words = _stop_words(form.stop_words.data)
 
     # TODO add functionality to create differnt document types (.odt, .pages etc)

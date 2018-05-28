@@ -15,7 +15,7 @@ def home():
     form = UrlRequest()
     if form.validate_on_submit():
         process_form_data(form)
-        filename = form.filename.data + form.file_extension.data
+        filename = f'{form.filename.data}{form.file_extension.data}'
         return render_template('processing.html', filename=filename)
     return render_template('form.html', form=form)
 
