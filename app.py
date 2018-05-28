@@ -1,6 +1,8 @@
 import os
+
 from flask import Flask, render_template, send_file
 from forms import UrlRequest
+
 from document.processing import process_form_data
 
 

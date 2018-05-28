@@ -1,8 +1,9 @@
 """Parse URL into BeautifulSoup object and extract info into a DocumentTemplate."""
-import re
 import collections
-import requests
+import re
+
 from bs4 import BeautifulSoup
+import requests
 
 
 DocumentTemplate = collections.namedtuple(
@@ -52,7 +53,7 @@ def _extract_content(soup):
     for p_tag in p_tags:
         if p_tag.parent not in p_divs:
             p_divs.append(p_tag.parent)
-    # Extract all wanted tags and their text 
+    # Extract all wanted tags and their text
     for div in p_divs:
         for tag in div.descendants:
             if tag.name in wanted_tags:

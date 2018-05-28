@@ -1,6 +1,7 @@
 """Convert web pages into docx documents for key-word analysis."""
 from docx import Document
 from docx.shared import Inches
+
 from document.create_template import create_template
 
 

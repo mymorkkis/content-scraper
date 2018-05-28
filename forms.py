@@ -1,7 +1,7 @@
 """Forms for app. UrlRequestForm: Home page URL request form."""
 from flask_wtf import FlaskForm
-from wtforms import TextField, SelectField
-from wtforms.validators import InputRequired, URL, Regexp
+from wtforms import SelectField, TextField
+from wtforms.validators import InputRequired, Regexp, URL
 
 
 class UrlRequest(FlaskForm):

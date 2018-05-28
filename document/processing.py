@@ -1,7 +1,8 @@
 """Link between app home route and document package. Process web form data."""
 import re
-from stop_words import get_stop_words
+
 from document import docx
+from stop_words import get_stop_words
 
 
 def process_form_data(form):
