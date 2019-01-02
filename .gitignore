@@ -3,4 +3,5 @@ __pycache__/
 images/
 *.py[cod]
 config.py
+.vscode/
 

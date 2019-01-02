@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+"bs4" = "*"
+gunicorn = "*"
+requests = "*"
+flask-wtf = "*"
+python-docx = "*"
+stop-words = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
